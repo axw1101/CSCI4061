@@ -21,12 +21,20 @@ char *sh_read_line(void)
  */
 int sh_handle_input(char *line, int fd_toserver)
 {
-	
+	size_t wsize;
 	/***** Insert YOUR code *******/
 	
  	/* Check for \seg command and create segfault */
+        if(starts_with(line, CND_SEG) == 1) {
+            raise(SIGSEGV);
+        }
 	
 	/* Write message to server for processing */
+        if( (wsize = write(fd_toserver, line, MSG_SIZE) == -1) {
+            perror("Failed to write to server");
+            return 1; 
+        }
+        
 	return 0;
 }
 
@@ -50,10 +58,15 @@ int is_empty(char *line)
 void sh_start(char *name, int fd_toserver)
 {
 	/***** Insert YOUR code *******/
+        while(1){
+        print_prompt(name);
+        
+        }
 }
 
 int main(int argc, char **argv)
 {
+    
 	
 	/***** Insert YOUR code *******/
 	
